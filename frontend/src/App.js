@@ -1,31 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
 
 function App() {
-
-  const [data, setData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/cars").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
-
   return (
-    <div>
-      {(typeof data[0] === 'undefined') ? (
-        <p>Loading...</p>
-      ) : (
-        data.map((car, i) => (
-          <p key={i}>{car.name}</p>
-        ))
-      )}
-    </div>
-  )
+    <React.Fragment>
+      <CssBaseline />
+      <Header />
+      <Home />
+    </React.Fragment>
+  );
 }
 
-export default App
+export default App;

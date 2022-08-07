@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request
 from flask_restful import Resource, Api, marshal_with, fields
 from flask_sqlalchemy import SQLAlchemy
@@ -8,20 +9,30 @@ api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
 db = SQLAlchemy(app)
 
+# configure static folder
+imageFolder = os.path.join('static', 'images')
+app.config['UPLOAD_FOLDER'] = imageFolder
 
 # typically this has to be it in models.py
 class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    brand = db.Column(db.String, nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    mileage = db.Column(db.Float, nullable=False)
+    production_year = db.Column(db.Integer, nullable=False)
+
 
     def __repr__(self):
-        return self.name
+        return self.brand
 
 
 # sort of schema for the data that we want to return in serialized version
 carFields = {
-    'id': fields.Integer,
-    'name':fields.String
+    'id':fields.Integer,
+    'brand':fields.String,
+    'price':fields.Float,
+    'mileage':fields.Float,
+    'production_year':fields.Integer,
 }
 
 
@@ -34,7 +45,7 @@ class CarsAPI(Resource):
     @marshal_with(carFields)
     def post(self):
         data = request.json
-        car = Car(name=data['name'])
+        car = Car(brand=data['brand'], price=data['price'], mileage=data['mileage'], production_year=data['production_year'])
         db.session.add(car)
         db.session.commit()
         cars = Car.query.all()
@@ -52,7 +63,7 @@ class CarAPI(Resource):
     def put(self, pk):
         data = request.json
         car = Car.query.filter_by(id=pk).first()
-        car.name = data['name']
+        car.brand = data['brand']
         db.session.commit()
         return car
 
