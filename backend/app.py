@@ -6,7 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 api = Api(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
+app.config['SECRET_KEY'] = 'hardsecretkey'
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Password123$@localhost/cars'
 db = SQLAlchemy(app)
 
 # configure static folder
@@ -16,12 +19,10 @@ app.config['UPLOAD_FOLDER'] = imageFolder
 # typically this has to be it in models.py
 class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    brand = db.Column(db.String, nullable=False)
+    brand = db.Column(db.String(200), nullable=False)
     price = db.Column(db.Float, nullable=False)
     mileage = db.Column(db.Float, nullable=False)
     production_year = db.Column(db.Integer, nullable=False)
-
-
     def __repr__(self):
         return self.brand
 
