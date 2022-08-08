@@ -9,7 +9,7 @@ api = Api(app)
 app.config['SECRET_KEY'] = 'hardsecretkey'
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cars.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Password123$@localhost/cars'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://rashidali:hardpassword123@auto-search-identifier.cbopgd7whczx.us-east-1.rds.amazonaws.com/autosearch'
 db = SQLAlchemy(app)
 
 # configure static folder
