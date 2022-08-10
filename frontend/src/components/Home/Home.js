@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Paper, Autocomplete, TextField, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import { textAlign } from "@mui/system";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
