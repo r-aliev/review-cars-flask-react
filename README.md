@@ -1,5 +1,11 @@
 # flaskReactSetup
 
+Used React.js and Flask with REST API to build a small car search&sort app.
+Database is connected to MySQL AWS to make it easy to test. SQLAlchemy is used.
+
+Tried to implement docker&nginx, but failed to connect to api. So request to api doesn't work. To check the code go to tryNginxDocker. 
+Unfortunately, too busy for now to do it, as previewed.
+
 ## Installation
 On backend: 
 
