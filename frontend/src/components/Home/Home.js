@@ -102,10 +102,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("/cars")
+    fetch("/api")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
+        console.log(data)
       });
   }, []);
 

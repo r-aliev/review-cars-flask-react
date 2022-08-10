@@ -15,5 +15,6 @@ PyMySQL==1.0.2
 pytz==2022.1
 six==1.16.0
 SQLAlchemy==1.4.39
+uWSGI==2.0.20
 Werkzeug==2.2.1
 zipp==3.8.1

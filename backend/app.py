@@ -40,6 +40,7 @@ carFields = {
 class CarsAPI(Resource):
     @marshal_with(carFields)
     def get(self):
+        response = flask.jsonify()
         cars = Car.query.all()
         return cars
 
@@ -77,9 +78,6 @@ class CarAPI(Resource):
         return cars
 
 
-api.add_resource(CarsAPI, '/cars')
-api.add_resource(CarAPI, '/cars/<int:pk>')
+api.add_resource(CarsAPI, '/api')
+api.add_resource(CarAPI, '/api/<int:pk>')
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
